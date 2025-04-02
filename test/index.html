@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>jib Testing</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <div id="jib-context-menu">
+            <ul>
+                <li>Option 1</li>
+                <li>Option 2</li>
+                <li>
+                    Option 3
+                    <ul>
+                        <li>A</li>
+                        <li onclick="console.log('Hello World!')">B</li>
+                        <li>C</li>
+                    </ul>
+                </li>
+                <li>Option 4</li>
+            </ul>
+        </div>
+
+        <div
+            style="
+                display: flex;
+                width: 100vw;
+                height: 100vh;
+                justify-content: center;
+                align-items: center;
+            "
+        >
+            <textarea
+                style="width: 500px; height: 200px"
+                id="jib-issue-comment"
+            ></textarea>
+        </div>
+
+        <script>
+            const comment = document.querySelector("#jib-issue-comment");
+            comment.addEventListener("input", (event) => console.log(event));
+
+            const menu = document.querySelector("#jib-context-menu");
+            let mouseX, mouseY;
+            document.addEventListener("mousemove", (event) => {
+                mouseX = event.pageX;
+                mouseY = event.pageY;
+            });
+            document.addEventListener("keydown", (event) => {
+                if (!event.altKey || event.key !== "m") {
+                    return;
+                }
+                event.preventDefault();
+                menu.style.left = `${mouseX}px`;
+                menu.style.top = `${mouseY}px`;
+                menu.style.display = "block";
+                menu.classList.add("show");
+
+                document.addEventListener(
+                    "click",
+                    (event) => {
+                        menu.style.display = "none";
+                        menu.classList.remove("show");
+                        comment.value = "Hallo Welt!";
+                        const fakeEvent = new Event("input", {
+                            bubbles: true,
+                            composed: true,
+                        });
+                        fakeEvent.data = "Hallo Welt!";
+                        fakeEvent.inputType = "insertText";
+                        comment.dispatchEvent(fakeEvent);
+                    },
+                    { once: true }
+                );
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,22 @@
+{
+    "manifest_version": 2,
+    "name": "Jithub",
+    "version": "0.0.1",
+    "description": "",
+    "content_scripts": [
+        {
+            "matches": [
+                "https://github.com/orgs/planfox-de/projects/6/views/16"
+            ],
+            "js": ["content.js"],
+            "css": ["styles.css"],
+            "run_at": "document_idle"
+        }
+    ],
+    "permissions": ["activeTab"],
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "jithub-ext.test@sms"
+        }
+    }
+}

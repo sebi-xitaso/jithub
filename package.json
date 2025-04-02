@@ -1,0 +1,14 @@
+{
+    "name": "jithub",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "build": "bun run esbuild.config.ts && cp ./manifest.json ./out/ && cp ./public/* ./out/"
+    },
+    "devDependencies": {
+        "esbuild": "^0.25.1"
+    },
+    "peerDependencies": {
+        "typescript": "^5"
+    }
+}

@@ -1,0 +1,25 @@
+div > [mgga-issue-type="parent"]:first-child {
+    margin-top: 0;
+}
+
+[mgga-issue-type="parent"] {
+    border: 2px solid red;
+    margin-top: 1rem;
+}
+
+[mgga-issue-type="child"] {
+    margin-left: 1rem;
+}
+
+#mgga-refresh-button {
+    cursor: pointer;
+    color: rgb(145, 152, 161);
+    display: flex;
+    padding: 4px;
+    border-radius: 6px;
+}
+
+#mgga-refresh-button:hover {
+    background-color: rgba(101, 108, 118, 0.2);
+}
+
